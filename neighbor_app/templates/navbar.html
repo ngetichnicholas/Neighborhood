@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-md navbar-dark">
+    <a href="{% url 'home' %}" class="navbar-brand">NEIGHBORHOOD</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <form class="form-inline ml-auto" role="search" action="{% url 'search' %}">
+            <input type="text" class="form-control mr-sm-2" placeholder="Search" name="card">
+            <button type="submit" class="btn btn-outline-light">Submit</button>
+        </form>
+        {% if user.is_authenticated %}
+
+        <a href=""><img class="profile_picture"
+                src="https://res.cloudinary.com/dbos9xidr/image/upload/v1626854682/zvtfufhexa8lqqqgcdt3.png" alt=""></a>
+
+
+        <a class="nav-item nav-link" href="/logout">Logout</a>
+
+        {% else %}
+
+        <a class="nav-item nav-link"  href="{% url 'register' %}">Signup</a>
+
+
+        <a class="nav-item nav-link"  href="{% url 'login' %}">Login</a>
+
+
+        {% endif %}
+    </div>
+</nav>
