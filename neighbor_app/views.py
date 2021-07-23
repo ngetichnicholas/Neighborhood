@@ -69,6 +69,7 @@ def login(request):
   form = AuthenticationForm()
   return render(request = request,template_name = "registration/login.html",context={"form":form})
 
+@login_required
 def index(request):
   return render(request, 'index.html')
 
@@ -90,7 +91,7 @@ def activate(request, uidb64, token):
     user.profile.signup_confirmation = True
     user.save()
     login(request)
-    return redirect('home')
+    return redirect('login')
   else:
     return render(request, 'registration/activation_invalid.html')
 
