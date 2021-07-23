@@ -11,6 +11,8 @@ from .tokens import account_activation_token
 from django.template.loader import render_to_string
 from .forms import SignUpForm
 from .tokens import account_activation_token
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def signup_view(request):
@@ -40,7 +42,25 @@ def signup_view(request):
       return redirect('activation_sent')
   else:
     form = SignUpForm()
-  return render(request, 'signup.html', {'form': form})
+  return render(request, 'registration/signup.html', {'form': form})
+
+def login(request):
+  if request.method == 'POST':
+    form = AuthenticationForm(request=request, data=request.POST)
+    if form.is_valid():
+      username = form.cleaned_data.get('username')
+      password = form.cleaned_data.get('password')
+      user = authenticate(username=username, password=password)
+      if user is not None:
+        auth_login(request, user)
+        messages.info(request, f"You are now logged in as {username}")
+        return redirect('home')
+      else:
+        messages.error(request, "Invalid username or password.")
+    else:
+      messages.error(request, "Invalid username or password.")
+  form = AuthenticationForm()
+  return render(request = request,template_name = "registration/login.html",context={"form":form})
 
 def index(request):
   return render(request, 'index.html')
@@ -66,3 +86,7 @@ def activate(request, uidb64, token):
     return redirect('home')
   else:
     return render(request, 'registration/activation_invalid.html')
+
+@login_required
+def search(request):
+  return render(request,'search.html')
