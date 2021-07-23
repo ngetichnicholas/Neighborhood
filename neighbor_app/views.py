@@ -12,6 +12,11 @@ from django.template.loader import render_to_string
 from .forms import SignUpForm
 from .tokens import account_activation_token
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import messages
+from django.contrib.auth import login as auth_login
+from django.core.mail import EmailMessage
+
 
 
 # Create your views here.
@@ -31,14 +36,16 @@ def signup_view(request):
       subject = 'Please Activate Your Account'
       # load a template like get_template() 
       # and calls its render() method immediately.
-      message = render_to_string('activation_request.html', {
+      message = render_to_string('registration/activation_request.html', {
           'user': user,
           'domain': current_site.domain,
           'uid': urlsafe_base64_encode(force_bytes(user.pk)),
           # method will generate a hash value with user related data
           'token': account_activation_token.make_token(user),
       })
-      user.email_user(subject, message)
+      to_email = form.cleaned_data.get('email')
+      email = EmailMessage(subject, message, to=[to_email])
+      email.send()
       return redirect('activation_sent')
   else:
     form = SignUpForm()
@@ -82,7 +89,7 @@ def activate(request, uidb64, token):
     # set signup_confirmation true
     user.profile.signup_confirmation = True
     user.save()
-    login(request, user)
+    login(request)
     return redirect('home')
   else:
     return render(request, 'registration/activation_invalid.html')
