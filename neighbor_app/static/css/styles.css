@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Yatra+One&family=Zen+Tokyo+Zoo&display=swap');
+.navbar {
+  margin-bottom:5rem;
+  background-color: rgb(37, 24, 41);
+  color:white;
+}
+.profile_picture {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  align-items: center;
+  text-align: center;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+.text-muted {
+  color: #A1BFA0 !important;
+}
+.forms, .panel {
+  padding: 2rem;
+  margin: 2rem;
+  background-color: #006579 !important;
+  color: #FED401;
+}
+.nav-link{
+  color: white !important;
+}
+@media screen and (max-width:766px) {
+  .form-inline>.form-control,.btn {
+    margin-bottom: 1rem !important;
+  }
+  
+}
