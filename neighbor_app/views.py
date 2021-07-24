@@ -17,7 +17,7 @@ from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.core.mail import EmailMessage
 from .models import Profile,NeighborHood,Post,Business
-from .forms import CreateNeighborHoodForm
+from .forms import CreateNeighborHoodForm,CreateBusinessForm
 
 
 
@@ -115,9 +115,9 @@ def create_neighborhood(request):
   if request.method == 'POST':
     add_neighborhood_form = CreateNeighborHoodForm(request.POST, request.FILES)
     if add_neighborhood_form.is_valid():
-      hood = add_neighborhood_form.save(commit=False)
-      hood.admin = request.user.profile
-      hood.save()
+      neighborhood = add_neighborhood_form.save(commit=False)
+      neighborhood.admin = request.user.profile
+      neighborhood.save()
       return redirect('home')
   else:
     add_neighborhood_form = CreateNeighborHoodForm()
@@ -139,3 +139,16 @@ def leave_neigborhood(request, neighborhood_id):
   request.user.profile.neighborhood = None
   request.user.profile.save()
   return redirect('home')
+
+@login_required
+def create_business(request):
+  if request.method == 'POST':
+    add_business_form = CreateNeighborHoodForm(request.POST, request.FILES)
+    if add_business_form.is_valid():
+      business = add_business_form.save(commit=False)
+      business.user = request.user
+      business.save()
+      return redirect('home')
+  else:
+    add_business_form = CreateBusinessForm()
+  return render(request, 'create_business.html', {'add_business_form': add_business_form})
