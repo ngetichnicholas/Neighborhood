@@ -24,7 +24,7 @@ from .forms import CreateNeighbourHoodForm
 # Create your views here.
 @login_required
 def index(request):
-  neighborhoods = NeighborHood.objects.all().order_by('-created_at')
+  neighborhoods = NeighborHood.objects.all()
   return render(request, 'index.html',{'neighborhoods':neighborhoods})
 
 def signup_view(request):
@@ -112,4 +112,4 @@ def create_neighborhood(request):
       return redirect('home')
   else:
     add_neighborhood_form = CreateNeighbourHoodForm()
-  return render(request, 'create_neigborhood.html', {'add_neighborhood_form': add_neighborhood_form})
+  return render(request, 'create_neighborhood.html', {'add_neighborhood_form': add_neighborhood_form})

@@ -9,9 +9,11 @@
       {% if neighborhoods %}
       {% for neighborhood in neighborhoods %}
       <div class="col-md-4">
-        <h2>{{neighborhood.title}}</h2>
-        <p>{{neighborhood.population}}</p>
+        <h2>{{neighborhood.name}}</h2>
+        <p>Population: {{neighborhood.population}}</p>
       </div>
+      {% endfor %}
+      {% endif %}
     <div class="col-md-3"></div>
   </div>
 </div>
