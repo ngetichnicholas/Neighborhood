@@ -141,11 +141,13 @@ def leave_neigborhood(request, neighborhood_id):
   return redirect('home')
 
 @login_required
-def create_business(request):
+def create_business(request,neighborhood_id):
+  neigborhood = NeighborHood.objects.get(id=neighborhood_id)
   if request.method == 'POST':
-    add_business_form = CreateNeighborHoodForm(request.POST, request.FILES)
+    add_business_form = CreateBusinessForm(request.POST, request.FILES)
     if add_business_form.is_valid():
       business = add_business_form.save(commit=False)
+      business.neighborhood =neigborhood
       business.user = request.user
       business.save()
       return redirect('home')
