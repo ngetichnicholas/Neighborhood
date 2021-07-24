@@ -17,7 +17,7 @@ from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.core.mail import EmailMessage
 from .models import Profile,NeighborHood,Post,Business
-from .forms import CreateNeighbourHoodForm
+from .forms import CreateNeighborHoodForm
 
 
 
@@ -104,12 +104,24 @@ def search(request):
 @login_required
 def create_neighborhood(request):
   if request.method == 'POST':
-    add_neighborhood_form = CreateNeighbourHoodForm(request.POST, request.FILES)
+    add_neighborhood_form = CreateNeighborHoodForm(request.POST, request.FILES)
     if add_neighborhood_form.is_valid():
       hood = add_neighborhood_form.save(commit=False)
       hood.admin = request.user.profile
       hood.save()
       return redirect('home')
   else:
-    add_neighborhood_form = CreateNeighbourHoodForm()
+    add_neighborhood_form = CreateNeighborHoodForm()
   return render(request, 'create_neighborhood.html', {'add_neighborhood_form': add_neighborhood_form})
+
+def choose_neighborhood(request, neighborhood_id):
+  neighborhood = get_object_or_404(NeighborHood, id=neighborhood_id)
+  request.user.profile.neighborhood = neighborhood
+  request.user.profile.save()
+  return redirect('home')
+
+def leave_neighborhood(request, neighborhood_id):
+  neighborhood = get_object_or_404(NeighborHood, id=neighborhood_id)
+  request.user.profile.neighborhood = None
+  request.user.profile.save()
+  return redirect('home')
