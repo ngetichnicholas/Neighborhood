@@ -6,7 +6,7 @@
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <form class="form-inline ml-auto" role="search" action="{% url 'search' %}">
-            <input type="text" class="form-control mr-sm-2" placeholder="Search" name="card">
+            <input type="text" class="form-control mr-sm-2" placeholder="Search business" name="business">
             <button type="submit" class="btn btn-outline-light">Submit</button>
         </form>
         {% if user.is_authenticated %}

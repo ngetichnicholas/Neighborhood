@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="row text-center">
-  {% if searched_business %}
-    <h1>Found {{ searched_business|length }} of searched term {{message}}</h1>
-  {% else %}
-    <h1> Found 0 business for the search term {{message}}</h1>
-  {% endif %}
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 text-center">
+      {% if searched_business %}
+      <h1>Found {{ searched_business|length }} of searched term {{message}}</h1>
+    {% else %}
+      <h1> Found 0 business for the search term {{message}}</h1>
+    {% endif %}    </div>
+    <div class="col-md-4"></div>
+  </div>
 </div>
 <div class="container-fluid">
   <div class="row">

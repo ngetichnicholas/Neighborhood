@@ -35,7 +35,8 @@ class NeighborHood(models.Model):
   description = models.TextField()
   population = models.IntegerField(null=True,blank = True)
   police_count = models.IntegerField(null=True,blank = True)
-  hospital_caunt = models.IntegerField(null=True,blank = True)
+  hospital_count = models.IntegerField(null=True,blank = True)
+  image = CloudinaryField('image')
 
   def create_neighborhood(self):
     self.save()
