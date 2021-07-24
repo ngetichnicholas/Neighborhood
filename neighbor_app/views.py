@@ -154,3 +154,17 @@ def create_business(request,neighborhood_id):
   else:
     add_business_form = CreateBusinessForm()
   return render(request, 'create_business.html', {'add_business_form': add_business_form})
+
+def create_post(request, neighborhood_id):
+  neighborhood = NeighborHood.objects.get(id=neighborhood_id)
+  if request.method == 'POST':
+    add_post_form = CreatePostForm(request.POST)
+    if add_post_form.is_valid():
+      post = add_post_form.save(commit=False)
+      post.neighborhood = neighborhood
+      post.user = request.user
+      post.save()
+      return redirect('neighborhood', neighborhood.id)
+  else:
+    form = CreatePostForm()
+  return render(request, 'create_post.html', {'add_post_form': add_post_form})
