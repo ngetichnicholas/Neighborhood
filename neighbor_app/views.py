@@ -149,10 +149,10 @@ def create_business(request,neighborhood_id):
       business.neighborhood =neighborhood
       business.user = request.user
       business.save()
-      return redirect('home')
+      return redirect('neighborhood', neighborhood.id)
   else:
     add_business_form = CreateBusinessForm()
-  return render(request, 'create_business.html', {'add_business_form': add_business_form})
+  return render(request, 'create_business.html', {'add_business_form': add_business_form,'neighborhood':neighborhood})
 
 def create_post(request, neighborhood_id):
   neighborhood = NeighborHood.objects.get(id=neighborhood_id)
