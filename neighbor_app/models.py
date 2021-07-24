@@ -1,15 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.deletion import SET_NULL
+from django.db.models.deletion import CASCADE, SET_NULL
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from cloudinary.models import CloudinaryField
 
 
 # Create your models here.
-class NeighborHood(models.Model):
-  pass
-
 class Profile(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE)
   first_name = models.CharField(max_length=100, blank=True)
@@ -18,7 +15,7 @@ class Profile(models.Model):
   signup_confirmation = models.BooleanField(default=False)
   bio =models.TextField(null=True)
   profile_picture =CloudinaryField('image')
-  neighborhood = models.ForeignKey(NeighborHood, on_delete=SET_NULL,null=True, related_name='members', blank=True)
+  neighborhood = models.ForeignKey('NeighborHood', on_delete=SET_NULL,null=True, related_name='members', blank=True)
   location =models.CharField(max_length=60,blank=True,null=True)
 
   def __str__(self):
@@ -29,3 +26,14 @@ def update_profile_signal(sender, instance, created, **kwargs):
   if created:
       Profile.objects.create(user=instance)
   instance.profile.save()
+  
+class NeighborHood(models.Model):
+  name = models.CharField(max_length=60)
+  location = models.CharField(max_length=60)
+  admin = models.ForeignKey(Profile,on_delete=CASCADE,related_name='hood')
+  description = models.TextField()
+  population = models.ImageField(null=True,blank = True)
+  police_count = models.ImageField(null=True,blank = True)
+
+
+
