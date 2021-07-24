@@ -99,7 +99,16 @@ def activate(request, uidb64, token):
 
 @login_required
 def search(request):
-  return render(request,'search.html')
+  if 'business' in request.GET and request.GET["business"]:
+    search_term = request.GET.get("business")
+    searched_business = Business.objects.filter(name__icontains=search_term).all()
+    message = f"{search_term}"
+
+    return render(request,'search.html', {"message":message,"businesss":searched_business})
+
+  else:
+    message = "You haven't searched for any term"
+    return render(request,'search.html',{"message":message})
 
 @login_required
 def create_neighborhood(request):
@@ -114,13 +123,18 @@ def create_neighborhood(request):
     add_neighborhood_form = CreateNeighborHoodForm()
   return render(request, 'create_neighborhood.html', {'add_neighborhood_form': add_neighborhood_form})
 
-def choose_neighborhood(request, neighborhood_id):
+def choose_neigborhood(request, neighborhood_id):
   neighborhood = get_object_or_404(NeighborHood, id=neighborhood_id)
   request.user.profile.neighborhood = neighborhood
   request.user.profile.save()
   return redirect('home')
 
-def leave_neighborhood(request, neighborhood_id):
+def get_neighborhood_users(request, neighborhood_id):
+  neighborhood = NeighborHood.objects.get(id=neighborhood_id)
+  users = Profile.objects.filter(neighbourhood=neighborhood)
+  return render(request, 'neighborhood_users.html', {'users': users})
+
+def leave_neigborhood(request, neighborhood_id):
   neighborhood = get_object_or_404(NeighborHood, id=neighborhood_id)
   request.user.profile.neighborhood = None
   request.user.profile.save()
