@@ -2,6 +2,8 @@
 {% load bootstrap4 %}
 {% block content %}
 <div class="container-fluid">
+  <a class="nav-item nav-link" href="{% url 'create_business' %}">Create Business</a>
+  <a class="nav-item nav-link" href="{% url 'create_post' %}">Create Post</a>
   <div class="row">
     <div class="col-md-3">
       {% if business %}
