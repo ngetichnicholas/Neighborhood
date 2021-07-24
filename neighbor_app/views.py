@@ -20,7 +20,6 @@ from .models import Profile,NeighborHood,Post,Business
 from .forms import CreateNeighborHoodForm,CreateBusinessForm,CreatePostForm
 
 
-
 # Create your views here.
 @login_required
 def index(request):
@@ -168,3 +167,10 @@ def create_post(request, neighborhood_id):
   else:
     form = CreatePostForm()
   return render(request, 'create_post.html', {'add_post_form': add_post_form})
+
+def neighborhood(request, neighborhood_id):
+  neighborhood = NeighborHood.objects.get(id=neighborhood_id)
+  business = Business.objects.filter(neighbourhood=neighborhood)
+  posts = Post.objects.filter(neighborhood=neighborhood)
+
+  return render(request, 'neighborhood.html', {'neighborhood':neighborhood,'business':business,'posts':posts})
