@@ -35,6 +35,15 @@ class NeighborHood(models.Model):
   population = models.ImageField(null=True,blank = True)
   police_count = models.ImageField(null=True,blank = True)
 
+class Post(models.Model):
+  title = models.CharField(max_length=144)
+  post = models.TextField()
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+  user = models.ForeignKey(User,on_delete=CASCADE,related_name='owner')
+  neighborhood = models.ForeignKey(NeighborHood,on_delete=CASCADE,related_name='neighborhood_post')
+
+
 class Business(models.Model):
   name =models.CharField(max_length=60)
   description = models.TextField()
