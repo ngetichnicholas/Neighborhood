@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      {% if business %}
+      {% for business in business %}
+      <div class="col-md-4">
+        <h2>{{business.name}}</h2>
+        <p>{{business.description}}</p>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+    <div class="col-md-6">
+      <h2 class="text-center">Posts</h2>
+      {% if posts %}
+      {% for post in posts %}
+      <div class="col-md-4">
+        <h2>{{post.title}}</h2>
+        <p>{{post.description}}</p>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+    <div class="col-md-3">
+      <h2 class="text-center">People</h2>
+      {% if users %}
+      {% for user in users %}
+      <div class="col-md-4">
+        <h2>{{user.first_name}}</h2>
+        <p>{{user.email}}</p>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
