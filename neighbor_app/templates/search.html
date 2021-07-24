@@ -1,11 +1,32 @@
-{% extends "base.html" %}
-{% load bootstrap4 %}
+{% extends 'base.html' %}
+
 {% block content %}
+<div class="row text-center">
+  {% if searched_business %}
+    <h1>Found {{ searched_business|length }} of searched term {{message}}</h1>
+  {% else %}
+    <h1> Found 0 business for the search term {{message}}</h1>
+  {% endif %}
+
+</div>
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-1"></div>
-    <div class="col-md-3">
-      <h2>Search results here</h2>
+    <div class="col-md-10">
+      <div class="row">
+        {% if searched_business %}
+        {% for business in searched_business %}
+        <div class="col-md-3 col-sm-4 business">
+          <h2>{{business.name}}</h2>
+          <p>{{business.description}}</p>
+          <p>{{business.neighborhood.name}}</p>
+          <p>{{business.user.profile.firstname}}</p>
+          <p>{{business.email}}</p>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
     <div class="col-md-1"></div>
   </div>
 </div>
