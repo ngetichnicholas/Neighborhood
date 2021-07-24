@@ -16,10 +16,16 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.core.mail import EmailMessage
+from .models import Profile,NeighborHood,Post,Business
 
 
 
 # Create your views here.
+@login_required
+def index(request):
+  neighborhoods = NeighborHood.objects.all().order_by('-created_at')
+  return render(request, 'index.html',{'neighborhoods':neighborhoods})
+
 def signup_view(request):
   if request.method  == 'POST':
     form = SignUpForm(request.POST)
@@ -69,13 +75,8 @@ def login(request):
   form = AuthenticationForm()
   return render(request = request,template_name = "registration/login.html",context={"form":form})
 
-@login_required
-def index(request):
-  return render(request, 'index.html')
-
 def activation_sent_view(request):
   return render(request, 'registration/activation_sent.html')
-
 
 def activate(request, uidb64, token):
   try:
@@ -98,3 +99,16 @@ def activate(request, uidb64, token):
 @login_required
 def search(request):
   return render(request,'search.html')
+
+@login_required
+def create_neighborhood(request):
+  if request.method == 'POST':
+    add_neighborhood_form = CreateNeighbourHoodForm(request.POST, request.FILES)
+    if add_neighborhood_form.is_valid():
+      hood = add_neighborhood_form.save(commit=False)
+      hood.admin = request.user.profile
+      hood.save()
+      return redirect('home')
+  else:
+    add_neighborhood_form = CreateNeighbourHoodForm()
+  return render(request, 'create_neigborhood.html', {'add_neighborhood_form': add_neighborhood_form})

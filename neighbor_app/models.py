@@ -44,7 +44,7 @@ class NeighborHood(models.Model):
     self.delete()
 
   @classmethod
-  def get_neighborhood(cls, neighborhood_id):
+  def find_neighborhood(cls, neighborhood_id):
     return cls.objects.filter(id=neighborhood_id)
   
   def __str__(self):
