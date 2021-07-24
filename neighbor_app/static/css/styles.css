@@ -17,9 +17,9 @@
   color: #A1BFA0 !important;
 }
 .forms, .panel {
-  padding: 2rem;
-  margin: 2rem;
+  padding: 5px;
   background-color: #4e0581 !important;
+  border-radius: 5px;
   color: #FED401;
 }
 .nav-link{
