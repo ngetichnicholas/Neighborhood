@@ -35,5 +35,12 @@ class NeighborHood(models.Model):
   population = models.ImageField(null=True,blank = True)
   police_count = models.ImageField(null=True,blank = True)
 
+class Business(models.Model):
+  name =models.CharField(max_length=60)
+  description = models.TextField()
+  neighborhood = models.ForeignKey(NeighborHood,on_delete=CASCADE,related_name='business')
+  user = models.ForeignKey(User,on_delete=CASCADE,related_name='user')
+  email = models.EmailField()
+
 
 
