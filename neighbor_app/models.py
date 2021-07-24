@@ -31,7 +31,7 @@ def update_profile_signal(sender, instance, created, **kwargs):
 class NeighborHood(models.Model):
   name = models.CharField(max_length=60)
   location = models.CharField(max_length=60)
-  admin = models.ForeignKey(Profile,on_delete=CASCADE,related_name='hood')
+  admin = models.ForeignKey(Profile,on_delete=CASCADE,related_name='neighborhood')
   description = models.TextField()
   population = models.ImageField(null=True,blank = True)
   police_count = models.ImageField(null=True,blank = True)
@@ -48,7 +48,7 @@ class NeighborHood(models.Model):
     return cls.objects.filter(id=neighborhood_id)
   
   def __str__(self):
-    return f'{self.name} hood'
+    return f'{self.name} neighborhood'
 
 
 class Post(models.Model):
@@ -92,4 +92,4 @@ class Business(models.Model):
     return cls.objects.filter(name__icontains=name).all()
 
   def __str__(self):
-    return f'{self.name} Business'
+    return f'{self.name} business'
