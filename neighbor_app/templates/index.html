@@ -3,7 +3,11 @@
 {% block content %}
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-3"></div>
+    <div class="col-md-3">
+      {% if request.user.profile.neighborhood %}
+      <a href="{% url 'neighborhood' user.profile.neighborhood.id %}">{{user.profile.neighborhood.name}}</a>
+      {% endif %}
+    </div>
     <div class="col-md-6">
       <h2 class="text-center">Welcome to Neighborhood</h2>
       {% if neighborhoods %}
@@ -11,10 +15,15 @@
       <div class="col-md-4">
         <h2>{{neighborhood.name}}</h2>
         <p>Population: {{neighborhood.population}}</p>
+        {% if request.user.profile.neighborhood == neighborhood %}
+        <a href="{% url 'leave_neighborhood' neighborhood.id %}" class="btn btn-outline-danger">Leave</a>
+        {% elif not request.user.profile.neighborhood %}
+        <a href="{% url 'choose_neighborhood' neighborhood.id %}" class="btn btn-primary">Move in</a>
+        {% endif %}
       </div>
       {% endfor %}
       {% endif %}
-    <div class="col-md-3"></div>
+      <div class="col-md-3"></div>
+    </div>
   </div>
-</div>
-{% endblock %}
+  {% endblock %}

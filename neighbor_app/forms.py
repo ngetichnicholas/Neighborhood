@@ -24,5 +24,6 @@ class CreateBusinessForm(forms.ModelForm):
     fields = ('name','description','email')
 
 class CreatePostForm(forms.ModelForm):
-  class Metta:
+  class Meta:
+    model = Post
     fields = ('title','post')

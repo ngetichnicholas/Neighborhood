@@ -2,10 +2,11 @@
 {% load bootstrap4 %}
 {% block content %}
 <div class="container-fluid">
-  <a class="nav-item nav-link" href="{% url 'create_business' %}">Create Business</a>
-  <a class="nav-item nav-link" href="{% url 'create_post' %}">Create Post</a>
+  <a class="nav-item nav-link" href="{% url 'create_business' neighborhood.id %}"><button class="btn btn-primary">Create Business</button></a>
+  <a class="nav-item nav-link" href="{% url 'create_post' neighborhood.id %}"><button class="btn btn-primary">Create Post</button></a>
   <div class="row">
     <div class="col-md-3">
+      <h2 class="text-center">Businesses</h2>
       {% if business %}
       {% for business in business %}
       <div class="col-md-4">

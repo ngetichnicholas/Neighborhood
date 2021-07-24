@@ -122,7 +122,7 @@ def create_neighborhood(request):
     add_neighborhood_form = CreateNeighborHoodForm()
   return render(request, 'create_neighborhood.html', {'add_neighborhood_form': add_neighborhood_form})
 
-def choose_neigborhood(request, neighborhood_id):
+def choose_neighborhood(request, neighborhood_id):
   neighborhood = get_object_or_404(NeighborHood, id=neighborhood_id)
   request.user.profile.neighborhood = neighborhood
   request.user.profile.save()
@@ -130,10 +130,10 @@ def choose_neigborhood(request, neighborhood_id):
 
 def get_neighborhood_users(request, neighborhood_id):
   neighborhood = NeighborHood.objects.get(id=neighborhood_id)
-  users = Profile.objects.filter(neighbourhood=neighborhood)
+  users = Profile.objects.filter(neighborhood=neighborhood)
   return render(request, 'neighborhood_users.html', {'users': users})
 
-def leave_neigborhood(request, neighborhood_id):
+def leave_neighborhood(request, neighborhood_id):
   neighborhood = get_object_or_404(NeighborHood, id=neighborhood_id)
   request.user.profile.neighborhood = None
   request.user.profile.save()
@@ -141,12 +141,12 @@ def leave_neigborhood(request, neighborhood_id):
 
 @login_required
 def create_business(request,neighborhood_id):
-  neigborhood = NeighborHood.objects.get(id=neighborhood_id)
+  neighborhood = NeighborHood.objects.get(id=neighborhood_id)
   if request.method == 'POST':
     add_business_form = CreateBusinessForm(request.POST, request.FILES)
     if add_business_form.is_valid():
       business = add_business_form.save(commit=False)
-      business.neighborhood =neigborhood
+      business.neighborhood =neighborhood
       business.user = request.user
       business.save()
       return redirect('home')
@@ -165,12 +165,12 @@ def create_post(request, neighborhood_id):
       post.save()
       return redirect('neighborhood', neighborhood.id)
   else:
-    form = CreatePostForm()
-  return render(request, 'create_post.html', {'add_post_form': add_post_form})
+    add_post_form = CreatePostForm()
+  return render(request, 'create_post.html', {'add_post_form': add_post_form,'neighborhood':neighborhood})
 
 def neighborhood(request, neighborhood_id):
   neighborhood = NeighborHood.objects.get(id=neighborhood_id)
-  business = Business.objects.filter(neighbourhood=neighborhood)
+  business = Business.objects.filter(neighborhood=neighborhood)
   posts = Post.objects.filter(neighborhood=neighborhood)
 
   return render(request, 'neighborhood.html', {'neighborhood':neighborhood,'business':business,'posts':posts})
