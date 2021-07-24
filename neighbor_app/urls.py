@@ -15,4 +15,5 @@ urlpatterns = [
   path('accounts/login/',app_views.login,name='login'),
   path('logout/',auth_views.LogoutView.as_view(template_name = 'registration/logout.html'),name='logout'),
   path('search',app_views.search,name='search'),
+  path('create_neighborhood',app_views.create_neighborhood,name='create_neighborhood')
 ]
