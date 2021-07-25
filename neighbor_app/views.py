@@ -17,7 +17,7 @@ from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.core.mail import EmailMessage
 from .models import Profile,NeighborHood,Post,Business
-from .forms import CreateNeighborHoodForm,CreateBusinessForm,CreatePostForm
+from .forms import CreateNeighborHoodForm,CreateBusinessForm,CreatePostForm,UpdateBusinessForm
 
 
 # Create your views here.
@@ -169,11 +169,12 @@ def create_post(request, neighborhood_id):
   return render(request, 'create_post.html', {'add_post_form': add_post_form,'neighborhood':neighborhood})
 
 def neighborhood(request, neighborhood_id):
+  current_user = request.user
   neighborhood = NeighborHood.objects.get(id=neighborhood_id)
   business = Business.objects.filter(neighborhood=neighborhood)
   posts = Post.objects.filter(neighborhood=neighborhood)
 
-  return render(request, 'neighborhood.html', {'neighborhood':neighborhood,'business':business,'posts':posts})
+  return render(request, 'neighborhood.html', {'current_user':current_user, 'neighborhood':neighborhood,'business':business,'posts':posts})
 
 @login_required
 def delete_business(request,business_id):
@@ -181,7 +182,7 @@ def delete_business(request,business_id):
   business = Business.objects.get(pk=business_id)
   if business:
     business.delete_business()
-  return redirect('neighborhood')
+  return redirect('home')
 
 @login_required
 def update_business(request, business_id):
@@ -191,7 +192,7 @@ def update_business(request, business_id):
     if update_business_form.is_valid():
       update_business_form.save()
       messages.success(request, f'Business updated!')
-      return redirect('neighborhood')
+      return redirect('home')
   else:
     update_business_form = UpdateBusinessForm(instance=business)
 

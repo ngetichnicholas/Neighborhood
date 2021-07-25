@@ -8,7 +8,7 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Profile(models.Model):
-  user = models.OneToOneField(User, on_delete=models.CASCADE)
+  user = models.OneToOneField(User, on_delete=models.CASCADE,related_name='profile')
   first_name = models.CharField(max_length=100, blank=True)
   last_name = models.CharField(max_length=100, blank=True)
   email = models.EmailField(max_length=150)
@@ -80,7 +80,7 @@ class Business(models.Model):
   name =models.CharField(max_length=60)
   description = models.TextField()
   neighborhood = models.ForeignKey(NeighborHood,on_delete=CASCADE,related_name='business')
-  user = models.ForeignKey(Profile,on_delete=CASCADE)
+  user = models.ForeignKey(User,on_delete=CASCADE)
   email = models.EmailField()
 
   def create_business(self):

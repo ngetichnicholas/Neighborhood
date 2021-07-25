@@ -24,8 +24,14 @@
       <div class="business">
         <h2>{{business.name}}</h2>
         <p>{{business.description}}</p>
-        <p>Owner: {{business.user.user.username}} {{business.user.profile.last_name}} </p>
+        <p>Owner: {{business.user.profile.first_name}} {{business.user.profile.last_name}} </p>
         <P>Email Address: {{business.email}}</P>
+        {% if business.user.username == current_user.username %}
+        <div class="text-center">
+        <a href="{% url 'update_business' business.id %}" class="btn btn-primary">Update</a>
+        <a href="{% url 'delete_business' business.id %}" class="btn  btn-danger">Delete</a>
+      </div>
+        {% endif %}
       </div>
       {% endfor %}
       {% endif %}
@@ -38,12 +44,6 @@
         <h2>{{post.title}}</h2>
         <p>{{post.description}}</p>
       </div>
-      {% if business.user.user.username == current_user.username %}
-      <div class="text-center">
-      <a href="{% url 'update_business' business.id %}" class="btn btn-primary">Update</a>
-      <a href="{% url 'delete_business' business.id %}" class="btn  btn-danger">Delete</a>
-    </div>
-      {% endif %}
       {% endfor %}
       {% endif %}
     </div>
