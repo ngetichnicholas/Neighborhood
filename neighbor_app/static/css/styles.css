@@ -5,7 +5,7 @@
   color:white;
 }
 body {
-  background-color: #d2f8d2;
+  background-color: #bae6b9;
 }
 .profile_picture {
   width: 30px;
@@ -37,7 +37,7 @@ body {
   margin-bottom: 3rem;
 }
 .header {
-  background-color: #bae6b9;
+  background-color: #a4dda4;
 }
 @media screen and (max-width:766px) {
   .form-inline>.form-control,.btn {

@@ -50,7 +50,7 @@ class NeighborHood(models.Model):
     return cls.objects.filter(id=neighborhood_id)
   
   def __str__(self):
-    return f'{self.name} hood'
+    return self.name
 
 
 class Post(models.Model):
@@ -80,7 +80,7 @@ class Business(models.Model):
   name =models.CharField(max_length=60)
   description = models.TextField()
   neighborhood = models.ForeignKey(NeighborHood,on_delete=CASCADE,related_name='business')
-  user = models.ForeignKey(User,on_delete=CASCADE,related_name='user')
+  user = models.ForeignKey(Profile,on_delete=CASCADE)
   email = models.EmailField()
 
   def create_business(self):
@@ -94,4 +94,4 @@ class Business(models.Model):
     return cls.objects.filter(name__icontains=name).all()
 
   def __str__(self):
-    return f'{self.name} Business'
+    return self.name

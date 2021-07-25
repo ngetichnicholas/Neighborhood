@@ -24,6 +24,8 @@
       <div class="business">
         <h2>{{business.name}}</h2>
         <p>{{business.description}}</p>
+        <p>Owner: {{business.user.user.username}} {{business.user.profile.last_name}} </p>
+        <P>Email Address: {{business.email}}</P>
       </div>
       {% endfor %}
       {% endif %}
