@@ -21,6 +21,7 @@ from .forms import CreateNeighborHoodForm,CreateBusinessForm,CreatePostForm,Upda
 
 
 # Create your views here.
+@login_required
 def index(request):
   neighborhoods = NeighborHood.objects.all().order_by('-created_at')
   return render(request, 'index.html',{'neighborhoods':neighborhoods})
@@ -121,6 +122,7 @@ def create_neighborhood(request):
     add_neighborhood_form = CreateNeighborHoodForm()
   return render(request, 'create_neighborhood.html', {'add_neighborhood_form': add_neighborhood_form})
 
+@login_required
 def choose_neighborhood(request, neighborhood_id):
   neighborhood = get_object_or_404(NeighborHood, id=neighborhood_id)
   request.user.profile.neighborhood = neighborhood
@@ -132,6 +134,7 @@ def get_neighborhood_users(request, neighborhood_id):
   users = Profile.objects.filter(neighborhood=neighborhood)
   return render(request, 'neighborhood_users.html', {'users': users})
 
+@login_required
 def leave_neighborhood(request, neighborhood_id):
   neighborhood = get_object_or_404(NeighborHood, id=neighborhood_id)
   request.user.profile.neighborhood = None
@@ -153,6 +156,7 @@ def create_business(request,neighborhood_id):
     add_business_form = CreateBusinessForm()
   return render(request, 'create_business.html', {'add_business_form': add_business_form,'neighborhood':neighborhood})
 
+@login_required
 def create_post(request, neighborhood_id):
   neighborhood = NeighborHood.objects.get(id=neighborhood_id)
   if request.method == 'POST':
@@ -167,6 +171,7 @@ def create_post(request, neighborhood_id):
     add_post_form = CreatePostForm()
   return render(request, 'create_post.html', {'add_post_form': add_post_form,'neighborhood':neighborhood})
 
+@login_required
 def neighborhood(request, neighborhood_id):
   current_user = request.user
   neighborhood = NeighborHood.objects.get(id=neighborhood_id)
