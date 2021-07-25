@@ -14,8 +14,13 @@
         </form>
         {% if user.is_authenticated %}
 
-        <a href=""><img class="profile_picture"
+            {% if current_user.profile.profile_picture.url %}
+            <a href="{% url 'profile'%}"><img class="profile_picture"
+              src="{{ current_user.profile.profile_picture.url }}" alt="{{ profile.name }}"></a>
+              {% else %}
+              <a href="{% url 'profile'%}"><img class="profile_picture"
                 src="https://res.cloudinary.com/dbos9xidr/image/upload/v1626854682/zvtfufhexa8lqqqgcdt3.png" alt=""></a>
+                {% endif %}
         <a class="nav-item nav-link" href="{% url 'create_neighborhood' %}">Create Neighborhood</a>
         <a class="nav-item nav-link" href="/logout">Logout</a>
 

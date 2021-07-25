@@ -13,6 +13,7 @@ urlpatterns = [
   path('sent/', app_views.activation_sent_view, name="activation_sent"),
   path('activate/<slug:uidb64>/<slug:token>/', app_views.activate, name='activate'),
   path('accounts/login/',app_views.login,name='login'),
+  path('accounts/profile/',app_views.profile,name='profile'),
   path('logout/',auth_views.LogoutView.as_view(template_name = 'registration/logout.html'),name='logout'),
   path('search',app_views.search,name='search'),
   path('neighborhood/<int:neighborhood_id>/',app_views.neighborhood,name='neighborhood'),
