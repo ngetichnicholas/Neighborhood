@@ -2,14 +2,26 @@
 {% load bootstrap4 %}
 {% block content %}
 <div class="container-fluid">
-  <a class="nav-item nav-link" href="{% url 'create_business' neighborhood.id %}"><button class="btn btn-primary">Create Business</button></a>
-  <a class="nav-item nav-link" href="{% url 'create_post' neighborhood.id %}"><button class="btn btn-primary">Create Post</button></a>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="row buttons">
+        <div class="col-md-6 text-center">
+          <a class="nav-item nav-link" href="{% url 'create_business' neighborhood.id %}"><button class="btn btn-primary">Create Business</button></a>
+        </div>
+        <div class="col-md-6 text-center">
+          <a class="nav-item nav-link" href="{% url 'create_post' neighborhood.id %}"><button class="btn btn-primary">Create Post</button></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
   <div class="row">
     <div class="col-md-3">
-      <h2 class="text-center">Businesses</h2>
+      <h2 class="text-center header">Businesses</h2>
       {% if business %}
       {% for business in business %}
-      <div class="col-md-4">
+      <div class="business">
         <h2>{{business.name}}</h2>
         <p>{{business.description}}</p>
       </div>
@@ -17,7 +29,7 @@
       {% endif %}
     </div>
     <div class="col-md-6">
-      <h2 class="text-center">Posts</h2>
+      <h2 class="text-center header">Posts</h2>
       {% if posts %}
       {% for post in posts %}
       <div class="col-md-4">
@@ -28,7 +40,7 @@
       {% endif %}
     </div>
     <div class="col-md-3">
-      <h2 class="text-center">People</h2>
+      <h2 class="text-center header">People</h2>
       {% if users %}
       {% for user in users %}
       <div class="col-md-4">
