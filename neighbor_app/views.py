@@ -224,3 +224,10 @@ def update_post(request, post_id):
     update_post_form = UpdatePostForm(instance=post)
 
   return render(request, 'update_post.html', {"update_post_form":update_post_form})
+
+@login_required
+def profile(request):
+  current_user = request.user
+  user_posts = Post.objects.filter(user_id = current_user.id).all()
+  
+  return render(request,'profile/profile.html',{'user_posts':user_posts,"current_user":current_user})
