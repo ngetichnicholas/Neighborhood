@@ -172,9 +172,10 @@ def neighborhood(request, neighborhood_id):
   current_user = request.user
   neighborhood = NeighborHood.objects.get(id=neighborhood_id)
   business = Business.objects.filter(neighborhood=neighborhood)
+  users = Profile.objects.filter(neighborhood=neighborhood)
   posts = Post.objects.filter(neighborhood=neighborhood)
 
-  return render(request, 'neighborhood.html', {'current_user':current_user, 'neighborhood':neighborhood,'business':business,'posts':posts})
+  return render(request, 'neighborhood.html', {'users':users,'current_user':current_user, 'neighborhood':neighborhood,'business':business,'posts':posts})
 
 @login_required
 def delete_business(request,business_id):

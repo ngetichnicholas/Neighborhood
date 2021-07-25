@@ -29,7 +29,7 @@
         <p>Owner: {{business.user.profile.first_name}} {{business.user.profile.last_name}} </p>
         <P>Email Address: {{business.email}}</P>
         {% if business.user.username == current_user.username %}
-        <div class="text-center">
+        <div class="">
           <a href="{% url 'update_business' business.id %}" class="btn btn-primary">Update</a>
           <a href="{% url 'delete_business' business.id %}" class="btn  btn-danger">Delete</a>
         </div>
@@ -49,7 +49,7 @@
         <p>Posted on {{post.created_at|date}}</p>
         <p>Last updated on {{post.updated_at}}</p>
         {% if post.user.username == current_user.username %}
-        <div class="text-center">
+        <div class="">
           <a href="{% url 'update_post' post.id %}" class="btn btn-primary">Update</a>
           <a href="{% url 'delete_post' post.id %}" class="btn  btn-danger">Delete</a>
         </div>
@@ -61,10 +61,10 @@
     <div class="col-md-3">
       <h2 class="text-center header">People</h2>
       {% if users %}
-      {% for user in users %}
+      {% for person in users %}
       <div class="col-md-4">
-        <h2>{{user.first_name}}</h2>
-        <p>{{user.email}}</p>
+        <h2>{{person.user.profile.first_name}}</h2>
+        <p>{{person.email}}</p>
       </div>
       {% endfor %}
       {% endif %}
