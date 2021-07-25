@@ -3,6 +3,9 @@
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
+    {% if request.user.profile.neighborhood %}
+    <a href="{% url 'neighborhood' user.profile.neighborhood.id %}">{{user.profile.neighborhood.name}}</a>
+    {% endif %}
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <form class="form-inline ml-auto" role="search" action="{% url 'search' %}">

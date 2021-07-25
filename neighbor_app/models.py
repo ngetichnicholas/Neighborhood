@@ -33,6 +33,7 @@ class NeighborHood(models.Model):
   location = models.CharField(max_length=60)
   admin = models.ForeignKey(Profile,on_delete=CASCADE,related_name='hood')
   description = models.TextField()
+  created_at = models.DateTimeField(auto_now_add=True)
   population = models.IntegerField(null=True,blank = True)
   police_count = models.IntegerField(null=True,blank = True)
   hospital_count = models.IntegerField(null=True,blank = True)

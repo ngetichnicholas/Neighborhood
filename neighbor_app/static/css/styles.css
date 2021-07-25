@@ -25,6 +25,9 @@
 .nav-link{
   color: white !important;
 }
+/* .neighbor-img {
+  width:max-content;
+} */
 @media screen and (max-width:766px) {
   .form-inline>.form-control,.btn {
     margin-bottom: 1rem !important;

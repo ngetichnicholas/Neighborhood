@@ -3,27 +3,30 @@
 {% block content %}
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-3">
-      {% if request.user.profile.neighborhood %}
-      <a href="{% url 'neighborhood' user.profile.neighborhood.id %}">{{user.profile.neighborhood.name}}</a>
-      {% endif %}
-    </div>
+    <div class="col-md-3"></div>
     <div class="col-md-6">
       <h2 class="text-center">Welcome to Neighborhood</h2>
       {% if neighborhoods %}
       {% for neighborhood in neighborhoods %}
-      <div class="col-md-4">
-        <h2>{{neighborhood.name}}</h2>
-        <p>Population: {{neighborhood.population}}</p>
-        {% if request.user.profile.neighborhood == neighborhood %}
-        <a href="{% url 'leave_neighborhood' neighborhood.id %}" class="btn btn-outline-danger">Leave</a>
-        {% elif not request.user.profile.neighborhood %}
-        <a href="{% url 'choose_neighborhood' neighborhood.id %}" class="btn btn-primary">Move in</a>
-        {% endif %}
+      <h2>{{neighborhood.name}}</h2>
+      <div class="neighbor-img">
+        <img src="{{neighborhood.image.url}}" class="img-fluid" alt="Responsive image">
       </div>
+      <p>{{neighborhood.description}}</p>
+      <p>Neighborhood Location: {{neighborhood.location}}</p>
+      <p>Occupants Population: {{neighborhood.population}}</p>
+      <p>Number of police serving the neighborhood: {{neighborhood.police_count}}</p>
+      <p>Number of Health Centers: {{neighborhood.hospital_count}}</p>
+
+      {% if request.user.profile.neighborhood == neighborhood %}
+      <a href="{% url 'leave_neighborhood' neighborhood.id %}" class="btn btn-outline-danger">Leave {{neighborhood.name}} Neighborhood</a>
+      {% elif not request.user.profile.neighborhood %}
+      <a href="{% url 'choose_neighborhood' neighborhood.id %}" class="btn btn-primary">Move into {{neighborhood.name}} Neighborhood</a>
+      {% endif %}
       {% endfor %}
       {% endif %}
-      <div class="col-md-3"></div>
     </div>
+      <div class="col-md-3"></div>
   </div>
-  {% endblock %}
+</div>
+{% endblock %}

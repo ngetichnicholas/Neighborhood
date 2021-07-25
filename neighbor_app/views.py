@@ -23,7 +23,7 @@ from .forms import CreateNeighborHoodForm,CreateBusinessForm,CreatePostForm
 # Create your views here.
 @login_required
 def index(request):
-  neighborhoods = NeighborHood.objects.all()
+  neighborhoods = NeighborHood.objects.all().order_by('-created_at')
   return render(request, 'index.html',{'neighborhoods':neighborhoods})
 
 def signup_view(request):
