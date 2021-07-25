@@ -14,10 +14,6 @@
           <img src="{{neighborhood.image.url}}" class="img-fluid" alt="Responsive image">
         </div>
         <p>{{neighborhood.description}}</p>
-        <p>Neighborhood Location: {{neighborhood.location}}</p>
-        <p>Occupants Population: {{neighborhood.population}}</p>
-        <p>Number of police serving the neighborhood: {{neighborhood.police_count}}</p>
-        <p>Number of Health Centers: {{neighborhood.hospital_count}}</p>
         {% if request.user.profile.neighborhood == neighborhood %}
         <a href="{% url 'neighborhood' user.profile.neighborhood.id %}"><button class="btn btn-success">Go to my Neighborhood</button></a>
         <a href="{% url 'leave_neighborhood' neighborhood.id %}" class="btn btn-outline-danger">Leave {{neighborhood.name}} Neighborhood</a>

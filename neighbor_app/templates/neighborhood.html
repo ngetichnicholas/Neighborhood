@@ -2,9 +2,28 @@
 {% load bootstrap4 %}
 {% block content %}
 <div class="container-fluid">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8 text-center">
+        <h2>Welcome to {{neighborhood.name}} Neighborhood</h2>
+        <p>Neighborhood Location: {{neighborhood.location}}</p>
+        <p>Occupants Population: {{neighborhood.population}}</p>
+        <p>Number of police serving the neighborhood: {{neighborhood.police_count}}</p>
+        <p>Number of Health Centers: {{neighborhood.hospital_count}}</p>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        </div>
+        <div class="col-md-3"></div>
+      </div>
       <div class="row buttons">
         <div class="col-md-6 text-center">
           <a class="nav-item nav-link" href="{% url 'create_business' neighborhood.id %}"><button
