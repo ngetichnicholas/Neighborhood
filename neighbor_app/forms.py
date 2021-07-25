@@ -37,3 +37,14 @@ class UpdatePostForm(forms.ModelForm):
   class Meta:
     model = Post
     fields = ['title','post']
+
+class UpdateProfile(forms.ModelForm):
+  class Meta:
+    model = Profile
+    fields = ['first_name','last_name','bio','profile_picture','location']
+
+class UpdateUser(forms.ModelForm):
+  email = forms.EmailField()
+  class Meta:
+    model = User
+    fields = ['username','email']
