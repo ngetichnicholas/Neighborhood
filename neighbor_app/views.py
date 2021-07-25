@@ -17,7 +17,7 @@ from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.core.mail import EmailMessage
 from .models import Profile,NeighborHood,Post,Business
-from .forms import CreateNeighborHoodForm,CreateBusinessForm,CreatePostForm,UpdateBusinessForm
+from .forms import CreateNeighborHoodForm,CreateBusinessForm,CreatePostForm,UpdateBusinessForm,UpdatePostForm
 
 
 # Create your views here.
@@ -210,7 +210,7 @@ def delete_post(request,post_id):
 def update_post(request, post_id):
   post = Post.objects.get(pk=post_id)
   if request.method == 'POST':
-    update_post_form = UpdatePostgitForm(request.POST, instance=post)
+    update_post_form = UpdatePostForm(request.POST, instance=post)
     if update_post_form.is_valid():
       update_post_form.save()
       messages.success(request, f'Post updated!')

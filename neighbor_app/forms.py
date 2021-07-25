@@ -32,3 +32,8 @@ class UpdateBusinessForm(forms.ModelForm):
   class Meta:
     model = Business
     fields = ['name','description','email']
+
+class UpdatePostForm(forms.ModelForm):
+  class Meta:
+    model = Post
+    fields = ['title','post']
