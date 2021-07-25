@@ -20,10 +20,11 @@ body {
   color: #A1BFA0 !important;
 }
 .forms, .panel {
-  padding: 5px;
+  padding: 20px;
   background-color: rgb(14, 58, 52) !important;
   border-radius: 5px;
   color: #FED401;
+  margin-bottom: 2rem;
 }
 .nav-link{
   color: white !important;

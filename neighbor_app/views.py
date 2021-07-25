@@ -17,14 +17,15 @@ from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.core.mail import EmailMessage
 from .models import Profile,NeighborHood,Post,Business
-from .forms import CreateNeighborHoodForm,CreateBusinessForm,CreatePostForm,UpdateBusinessForm,UpdatePostForm
+from .forms import *
 
 
 # Create your views here.
 @login_required
 def index(request):
+  current_user = request.user
   neighborhoods = NeighborHood.objects.all().order_by('-created_at')
-  return render(request, 'index.html',{'neighborhoods':neighborhoods})
+  return render(request, 'index.html',{'current_user':current_user, 'neighborhoods':neighborhoods})
 
 def signup_view(request):
   if request.method  == 'POST':
