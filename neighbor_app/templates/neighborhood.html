@@ -38,6 +38,12 @@
         <h2>{{post.title}}</h2>
         <p>{{post.description}}</p>
       </div>
+      {% if business.user.user.username == current_user.username %}
+      <div class="text-center">
+      <a href="{% url 'update_business' business.id %}" class="btn btn-primary">Update</a>
+      <a href="{% url 'delete_business' business.id %}" class="btn  btn-danger">Delete</a>
+    </div>
+      {% endif %}
       {% endfor %}
       {% endif %}
     </div>

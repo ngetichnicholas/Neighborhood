@@ -174,3 +174,25 @@ def neighborhood(request, neighborhood_id):
   posts = Post.objects.filter(neighborhood=neighborhood)
 
   return render(request, 'neighborhood.html', {'neighborhood':neighborhood,'business':business,'posts':posts})
+
+@login_required
+def delete_business(request,business_id):
+  current_user = request.user
+  business = Business.objects.get(pk=business_id)
+  if business:
+    business.delete_business()
+  return redirect('neighborhood')
+
+@login_required
+def update_business(request, business_id):
+  business = Business.objects.get(pk=business_id)
+  if request.method == 'POST':
+    update_business_form = UpdateBusinessForm(request.POST, instance=business)
+    if update_business_form.is_valid():
+      update_business_form.save()
+      messages.success(request, f'Business updated!')
+      return redirect('neighborhood')
+  else:
+    update_business_form = UpdateBusinessForm(instance=business)
+
+  return render(request, 'update_business.html', {"update_business_form":update_business_form})
