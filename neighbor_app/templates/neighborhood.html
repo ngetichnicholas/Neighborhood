@@ -7,10 +7,12 @@
     <div class="col-md-6">
       <div class="row buttons">
         <div class="col-md-6 text-center">
-          <a class="nav-item nav-link" href="{% url 'create_business' neighborhood.id %}"><button class="btn btn-primary">Create Business</button></a>
+          <a class="nav-item nav-link" href="{% url 'create_business' neighborhood.id %}"><button
+              class="btn btn-primary">Create Business</button></a>
         </div>
         <div class="col-md-6 text-center">
-          <a class="nav-item nav-link" href="{% url 'create_post' neighborhood.id %}"><button class="btn btn-primary">Create Post</button></a>
+          <a class="nav-item nav-link" href="{% url 'create_post' neighborhood.id %}"><button
+              class="btn btn-primary">Create Post</button></a>
         </div>
       </div>
     </div>
@@ -28,9 +30,9 @@
         <P>Email Address: {{business.email}}</P>
         {% if business.user.username == current_user.username %}
         <div class="text-center">
-        <a href="{% url 'update_business' business.id %}" class="btn btn-primary">Update</a>
-        <a href="{% url 'delete_business' business.id %}" class="btn  btn-danger">Delete</a>
-      </div>
+          <a href="{% url 'update_business' business.id %}" class="btn btn-primary">Update</a>
+          <a href="{% url 'delete_business' business.id %}" class="btn  btn-danger">Delete</a>
+        </div>
         {% endif %}
       </div>
       {% endfor %}
@@ -40,9 +42,18 @@
       <h2 class="text-center header">Posts</h2>
       {% if posts %}
       {% for post in posts %}
-      <div class="col-md-4">
+      <div class="business">
         <h2>{{post.title}}</h2>
-        <p>{{post.description}}</p>
+        <p>{{post.post}}</p>
+        <p>Owner: {{post.user.profile.first_name}} {{business.user.profile.last_name}} </p>
+        <p>Posted on {{post.created_at|date}}</p>
+        <p>Last updated on {{post.updated_at}}</p>
+        {% if post.user.username == current_user.username %}
+        <div class="text-center">
+          <a href="{% url 'update_post' post.id %}" class="btn btn-primary">Update</a>
+          <a href="{% url 'delete_post' post.id %}" class="btn  btn-danger">Delete</a>
+        </div>
+        {% endif %}
       </div>
       {% endfor %}
       {% endif %}
