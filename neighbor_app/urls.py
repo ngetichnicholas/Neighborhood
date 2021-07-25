@@ -26,7 +26,4 @@ urlpatterns = [
   path('delete_post/<post_id>',app_views.delete_post,name='delete_post'),
   path('update_post/<post_id>',app_views.update_post,name='update_post'),
 
-
-
-
 ]

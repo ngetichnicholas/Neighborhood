@@ -197,3 +197,25 @@ def update_business(request, business_id):
     update_business_form = UpdateBusinessForm(instance=business)
 
   return render(request, 'update_business.html', {"update_business_form":update_business_form})
+
+@login_required
+def delete_post(request,post_id):
+  current_user = request.user
+  post = Post.objects.get(pk=post_id)
+  if post:
+    post.delete_post()
+  return redirect('home')
+
+@login_required
+def update_post(request, post_id):
+  post = Post.objects.get(pk=post_id)
+  if request.method == 'POST':
+    update_post_form = UpdatePostgitForm(request.POST, instance=post)
+    if update_post_form.is_valid():
+      update_post_form.save()
+      messages.success(request, f'Post updated!')
+      return redirect('home')
+  else:
+    update_post_form = UpdatePostForm(instance=post)
+
+  return render(request, 'update_post.html', {"update_post_form":update_post_form})
