@@ -21,7 +21,6 @@ from .forms import CreateNeighborHoodForm,CreateBusinessForm,CreatePostForm,Upda
 
 
 # Create your views here.
-@login_required
 def index(request):
   neighborhoods = NeighborHood.objects.all().order_by('-created_at')
   return render(request, 'index.html',{'neighborhoods':neighborhoods})

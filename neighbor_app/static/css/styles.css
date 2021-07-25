@@ -21,7 +21,7 @@ body {
 }
 .forms, .panel {
   padding: 5px;
-  background-color: #4e0581 !important;
+  background-color: rgb(14, 58, 52) !important;
   border-radius: 5px;
   color: #FED401;
 }
@@ -38,6 +38,13 @@ body {
 }
 .header {
   background-color: #a4dda4;
+}
+.my-neighborhood {
+  color: #FED401;
+}
+.my-neighborhood:hover {
+  color: white;
+  text-decoration: none;
 }
 @media screen and (max-width:766px) {
   .form-inline>.form-control,.btn {

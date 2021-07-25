@@ -4,7 +4,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     {% if request.user.profile.neighborhood %}
-    <a href="{% url 'neighborhood' user.profile.neighborhood.id %}">{{user.profile.neighborhood.name}}</a>
+    <a class="my-neighborhood" href="{% url 'neighborhood' user.profile.neighborhood.id %}">{{user.profile.neighborhood.name}}</a>
     {% endif %}
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
