@@ -47,6 +47,10 @@ body {
   color: white;
   text-decoration: none;
 }
+h1,h2 {
+  color: #208A3F;
+}
+
 @media screen and (max-width:766px) {
   .form-inline>.form-control,.btn {
     margin-bottom: 1rem !important;
