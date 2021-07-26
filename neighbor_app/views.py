@@ -252,16 +252,16 @@ def update_profile(request):
   }
   return render(request,'profile/update.html',params)
 
-@login_required
-def update_neighborhood(request, neighborhood_id):
-  neighborhood = Post.objects.get(pk=neighborhood_id)
-  if request.method == 'POST':
-    update_neighborhood_form = UpdatePostForm(request.POST, instance=neighborhood)
-    if update_neighborhood_form.is_valid():
-      update_neighborhood_form.save()
-      messages.success(request, f'Post updated!')
-      return redirect('home')
-  else:
-    update_neighborhood_form = UpdateNeighborhoodForm(instance=neighborhood)
+# @login_required
+# def update_neighborhood(request, neighborhood_id):
+#   neighborhood = Post.objects.get(pk=neighborhood_id)
+#   if request.method == 'POST':
+#     update_neighborhood_form = UpdatePostForm(request.POST, instance=neighborhood)
+#     if update_neighborhood_form.is_valid():
+#       update_neighborhood_form.save()
+#       messages.success(request, f'Post updated!')
+#       return redirect('home')
+#   else:
+#     update_neighborhood_form = UpdateNeighborhoodForm(instance=neighborhood)
 
-  return render(request, 'update_neighborhood.html', {"update_neighborhood_form":update_neighborhood_form})
+#   return render(request, 'update_neighborhood.html', {"update_neighborhood_form":update_neighborhood_form})

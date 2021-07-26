@@ -15,7 +15,7 @@ class Profile(models.Model):
   signup_confirmation = models.BooleanField(default=False)
   bio =models.TextField(null=True)
   profile_picture =CloudinaryField('image')
-  neighborhood = models.ForeignKey('NeighborHood', on_delete=SET_NULL,null=True, related_name='members', blank=True)
+  neighborhood = models.ForeignKey('NeighborHood', on_delete=SET_NULL,null=True, related_name='people', blank=True)
   location =models.CharField(max_length=60,blank=True,null=True)
 
   def __str__(self):
@@ -31,12 +31,13 @@ def update_profile_signal(sender, instance, created, **kwargs):
 class NeighborHood(models.Model):
   name = models.CharField(max_length=60)
   location = models.CharField(max_length=60)
-  admin = models.ForeignKey(Profile,on_delete=CASCADE,related_name='hood')
+  admin = models.ForeignKey(Profile,on_delete=CASCADE,related_name='administrator')
   description = models.TextField()
   created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
   population = models.IntegerField(null=True,blank = True)
-  police_count = models.IntegerField(null=True,blank = True)
-  hospital_count = models.IntegerField(null=True,blank = True)
+  police_contact = models.IntegerField(null=True,blank = True)
+  hospital_contact = models.IntegerField(null=True,blank = True)
   image = CloudinaryField('image')
 
   def create_neighborhood(self):
@@ -56,9 +57,10 @@ class NeighborHood(models.Model):
 class Post(models.Model):
   title = models.CharField(max_length=144)
   post = models.TextField()
+  image = CloudinaryField('image')
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
-  user = models.ForeignKey(User,on_delete=CASCADE,related_name='owner')
+  user = models.ForeignKey(User,on_delete=CASCADE,related_name='poster')
   neighborhood = models.ForeignKey(NeighborHood,on_delete=CASCADE,related_name='neighborhood_post')
 
   def save_post(self):
@@ -79,6 +81,9 @@ class Post(models.Model):
 class Business(models.Model):
   name =models.CharField(max_length=60)
   description = models.TextField()
+  image = CloudinaryField('image')
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
   neighborhood = models.ForeignKey(NeighborHood,on_delete=CASCADE,related_name='business')
   user = models.ForeignKey(User,on_delete=CASCADE)
   email = models.EmailField()

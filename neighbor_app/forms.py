@@ -16,7 +16,7 @@ class SignUpForm(UserCreationForm):
 class CreateNeighborHoodForm(forms.ModelForm):
   class Meta:
     model = NeighborHood
-    fields = ('name','location','description','population','police_count','hospital_count','image')
+    fields = ['name','location','description','population','police_contact','hospital_contact','image']
 
 class CreateBusinessForm(forms.ModelForm):
   class Meta:
