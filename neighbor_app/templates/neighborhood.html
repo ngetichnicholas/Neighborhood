@@ -1,36 +1,18 @@
-{% extends "base.html" %}
+{% extends "base_neighbor.html" %}
 {% load bootstrap4 %}
 {% block content %}
 <div class="container-fluid">
-  <div class="container">
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8 text-center">
         <h2>Welcome to {{neighborhood.name}} Neighborhood</h2>
         <p>Neighborhood Location: {{neighborhood.location}}</p>
         <p>Occupants Population: {{neighborhood.population}}</p>
-        <p>Number of police serving the neighborhood: {{neighborhood.police_count}}</p>
-        <p>Number of Health Centers: {{neighborhood.hospital_count}}</p>
+        <p>Police Telephone no: {{neighborhood.police_contact}}</p>
+        <p>Hospital Telephone no: {{neighborhood.hospital_contact}}</p>
       </div>
       <div class="col-md-2"></div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-      <div class="row buttons">
-        <div class="col-md-6 text-center">
-          <a class="nav-item nav-link" href="{% url 'create_business' neighborhood.id %}"><button
-              class="btn btn-primary">Create Business</button></a>
-        </div>
-        <div class="col-md-6 text-center">
-          <a class="nav-item nav-link" href="{% url 'create_post' neighborhood.id %}"><button
-              class="btn btn-primary">Create Post</button></a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-3"></div>
-  </div>
   <div class="row">
     <div class="col-md-3">
       <h2 class="text-center header">Businesses</h2>
@@ -39,11 +21,12 @@
       <div class="business">
         <h2>{{business.name}}</h2>
         <p>{{business.description}}</p>
+        <img src="{{business.image.url}}" class="img-thumbnail " alt="">
         <p>Owner: {{business.user.profile.first_name}} {{business.user.profile.last_name}} </p>
         <P>Email Address: {{business.email}}</P>
         {% if business.user.username == current_user.username %}
         <div class="">
-          <a href="{% url 'update_business' business.id %}" class="btn btn-primary">Update</a>
+          <a href="{% url 'update_business' business.id %}" class="btn btn-success">Update</a>
           <a href="{% url 'delete_business' business.id %}" class="btn  btn-danger">Delete</a>
         </div>
         {% endif %}
@@ -58,12 +41,12 @@
       <div class="business">
         <h2>{{post.title}}</h2>
         <p>{{post.post}}</p>
-        <p>Owner: {{post.user.profile.first_name}} {{business.user.profile.last_name}} </p>
-        <p>Posted on {{post.created_at|date}}</p>
+        <img src="{{post.image.url}}" class="img-thumbnail " alt="">
+        <p>Posted by {{post.user.profile.first_name}} {{business.user.profile.last_name}}  on {{post.created_at|date}}</p>
         <p>Last updated on {{post.updated_at}}</p>
         {% if post.user.username == current_user.username %}
         <div class="">
-          <a href="{% url 'update_post' post.id %}" class="btn btn-primary">Update</a>
+          <a href="{% url 'update_post' post.id %}" class="btn btn-success">Update</a>
           <a href="{% url 'delete_post' post.id %}" class="btn  btn-danger">Delete</a>
         </div>
         {% endif %}

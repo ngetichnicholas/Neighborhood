@@ -161,7 +161,7 @@ def create_business(request,neighborhood_id):
 def create_post(request, neighborhood_id):
   neighborhood = NeighborHood.objects.get(id=neighborhood_id)
   if request.method == 'POST':
-    add_post_form = CreatePostForm(request.POST)
+    add_post_form = CreatePostForm(request.POST,request.FILES)
     if add_post_form.is_valid():
       post = add_post_form.save(commit=False)
       post.neighborhood = neighborhood
@@ -194,7 +194,7 @@ def delete_business(request,business_id):
 def update_business(request, business_id):
   business = Business.objects.get(pk=business_id)
   if request.method == 'POST':
-    update_business_form = UpdateBusinessForm(request.POST, instance=business)
+    update_business_form = UpdateBusinessForm(request.POST,request.FILES, instance=business)
     if update_business_form.is_valid():
       update_business_form.save()
       messages.success(request, f'Business updated!')
@@ -216,7 +216,7 @@ def delete_post(request,post_id):
 def update_post(request, post_id):
   post = Post.objects.get(pk=post_id)
   if request.method == 'POST':
-    update_post_form = UpdatePostForm(request.POST, instance=post)
+    update_post_form = UpdatePostForm(request.POST,request.FILES, instance=post)
     if update_post_form.is_valid():
       update_post_form.save()
       messages.success(request, f'Post updated!')
@@ -256,7 +256,7 @@ def update_profile(request):
 def update_neighborhood(request, neighborhood_id):
   neighborhood = NeighborHood.objects.get(pk=neighborhood_id)
   if request.method == 'POST':
-    update_neighborhood_form = UpdateNeighborhoodForm(request.POST, instance=neighborhood)
+    update_neighborhood_form = UpdateNeighborhoodForm(request.POST,request.FILES, instance=neighborhood)
     if update_neighborhood_form.is_valid():
       update_neighborhood_form.save()
       messages.success(request, f'Post updated!')

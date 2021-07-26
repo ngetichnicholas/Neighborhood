@@ -50,6 +50,14 @@ body {
 h1,h2 {
   color: #208A3F;
 }
+.button-action {
+  margin-bottom: 2rem !important;
+}
+.nav2 {
+  background-color: #a4dda4;
+  margin-bottom: 4rem !important;
+  padding: 20px;
+}
 
 @media screen and (max-width:766px) {
   .form-inline>.form-control,.btn {

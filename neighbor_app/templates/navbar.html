@@ -8,12 +8,15 @@
     {% endif %}
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
+        <a class="nav-item nav-link" href="{% url 'create_business' neighborhood.id %}"><button
+            class="btn btn-success">Create Business</button></a>
+            <a class="nav-item nav-link" href="{% url 'create_post' neighborhood.id %}"><button
+                class="btn btn-success">Create Post</button></a>
         <form class="form-inline ml-auto" role="search" action="{% url 'search' %}">
             <input type="text" class="form-control mr-sm-2" placeholder="Search business" name="business">
             <button type="submit" class="btn btn-outline-success">Submit</button>
         </form>
         {% if user.is_authenticated %}
-        <a class="nav-item nav-link" href="{% url 'create_neighborhood' %}">Create Neighborhood</a>
             {% if current_user.profile.profile_picture.url %}
             <a href="{% url 'profile'%}"><img class="profile_picture"
               src="{{ current_user.profile.profile_picture.url }}" alt=""></a>
