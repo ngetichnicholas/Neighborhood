@@ -99,12 +99,12 @@ def activate(request, uidb64, token):
 
 @login_required
 def search(request):
-  if 'business' in request.GET and request.GET["business"]:
-    search_term = request.GET.get("business")
-    searched_business = Business.objects.filter(name__icontains=search_term).all()
+  if 'name' in request.GET and request.GET["name"]:
+    search_term = request.GET.get("name")
+    searched_businesses = Business.search_businesses(search_term)
     message = f"{search_term}"
 
-    return render(request,'search.html', {"message":message,"businesss":searched_business})
+    return render(request,'search.html', {"message":message,"businesses":searched_businesses})
 
   else:
     message = "You haven't searched for any term"
@@ -273,3 +273,10 @@ def delete_neighborhood(request,neighborhood_id):
   if neighborhood:
     neighborhood.delete_neighborhood()
   return redirect('home')
+
+@login_required
+def users_profile(request,pk):
+  user = User.objects.get(pk = pk)
+  current_user = request.user
+  
+  return render(request,'profile/users_profile.html',{"user":user,"current_user":current_user})

@@ -13,7 +13,7 @@
             <a class="nav-item nav-link" href="{% url 'create_post' neighborhood.id %}"><button
                 class="btn btn-success">Create Post</button></a>
         <form class="form-inline ml-auto" role="search" action="{% url 'search' %}">
-            <input type="text" class="form-control mr-sm-2" placeholder="Search business" name="business">
+            <input type="text" class="form-control mr-sm-2" placeholder="Search business" name="name">
             <button type="submit" class="btn btn-outline-success">Submit</button>
         </form>
         {% if user.is_authenticated %}

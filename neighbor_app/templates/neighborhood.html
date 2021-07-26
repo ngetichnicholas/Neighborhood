@@ -56,10 +56,11 @@
     </div>
     <div class="col-md-3">
       <h2 class="text-center header">People</h2>
+      <p>View the profiles of people alson in the neighborhood</p>
       {% if users %}
       {% for person in users %}
       <div class="col-md-4">
-        <h2>{{person.user.profile.first_name}}</h2>
+        <h2><a href="{% url 'users_profile' person.user.id %}">{{person.user.profile.first_name}}</a></h2>
         <p>{{person.email}}</p>
       </div>
       {% endfor %}

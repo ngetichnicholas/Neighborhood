@@ -29,7 +29,5 @@ urlpatterns = [
   path('update_post/<post_id>',app_views.update_post,name='update_post'),
   path('update_neighborhood/<neighborhood_id>',app_views.update_neighborhood,name='update_neighborhood'),
   path('delete_neighborhood/<neighborhood_id>',app_views.delete_neighborhood,name='delete_neighborhood'),
-
-
-
+  path('users/<pk>',app_views.users_profile,name='users_profile'),
 ]

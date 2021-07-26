@@ -95,8 +95,8 @@ class Business(models.Model):
     self.delete()
 
   @classmethod
-  def search_business(cls, name):
-    return cls.objects.filter(name__icontains=name).all()
+  def search_businesses(cls, business):
+    return cls.objects.filter(name__icontains=business).all()
 
   def __str__(self):
     return self.name
