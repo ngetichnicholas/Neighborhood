@@ -34,6 +34,13 @@ body {
 .nav-link{
   color: white !important;
 }
+.users {
+  background-color: rgb(14, 58, 52);
+  color: white;
+  padding: 10px;
+  margin-bottom: 5px;
+
+}
 .neighborhood {
   margin-bottom: 2rem;
   background-color: #A1BFA0;

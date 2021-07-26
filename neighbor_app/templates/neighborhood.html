@@ -59,8 +59,8 @@
       <p>View the profiles of people alson in the neighborhood</p>
       {% if users %}
       {% for person in users %}
-      <div class="col-md-4">
-        <h2><a href="{% url 'users_profile' person.user.id %}">{{person.user.profile.first_name}}</a></h2>
+      <div class="users">
+        <h2><a style="color: #FED401;" href="{% url 'users_profile' person.user.id %}">{{person.user.profile.first_name}}</a></h2>
         <p>{{person.email}}</p>
       </div>
       {% endfor %}
