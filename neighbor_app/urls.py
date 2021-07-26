@@ -27,5 +27,7 @@ urlpatterns = [
   path('update_business/<business_id>',app_views.update_business,name='update_business'),
   path('delete_post/<post_id>',app_views.delete_post,name='delete_post'),
   path('update_post/<post_id>',app_views.update_post,name='update_post'),
+  path('update_neighborhood/<neighborhood_id>',app_views.update_neighborhood,name='update_neighborhood'),
+
 
 ]

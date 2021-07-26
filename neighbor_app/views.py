@@ -265,3 +265,11 @@ def update_neighborhood(request, neighborhood_id):
     update_neighborhood_form = UpdateNeighborhoodForm(instance=neighborhood)
 
   return render(request, 'update_neighborhood.html', {"update_neighborhood_form":update_neighborhood_form})
+
+@login_required
+def delete_neighborhood(request,neighborhood_id):
+  current_user = request.user
+  neighborhood = NeighborHood.objects.get(pk=neighborhood_id)
+  if neighborhood:
+    neighborhood.delete_neighborhood()
+  return redirect('home')

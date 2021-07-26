@@ -20,6 +20,12 @@
         {% elif not request.user.profile.neighborhood %}
         <a href="{% url 'choose_neighborhood' neighborhood.id %}" class="btn btn-primary">Move into {{neighborhood.name}} Neighborhood</a>
         {% endif %}
+        {% if neighborhood.admin.user.username == current_user.username %}
+        <div class="">
+          <a href="{% url 'update_neighborhood' neighborhood.id %}" class="btn btn-primary">Update</a>
+          <a href="{% url 'delete_neighborhood' neighborhood.id %}" class="btn  btn-danger">Delete</a>
+        </div>
+        {% endif %}
       </div>
       {% endfor %}
       {% endif %}
