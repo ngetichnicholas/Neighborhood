@@ -21,22 +21,22 @@ class CreateNeighborHoodForm(forms.ModelForm):
 class CreateBusinessForm(forms.ModelForm):
   class Meta:
     model = Business
-    fields = ('name','description','email')
+    fields = ('name','description','image','email')
 
 class CreatePostForm(forms.ModelForm):
   class Meta:
     model = Post
-    fields = ('title','post')
+    fields = ('title','post','image')
 
 class UpdateBusinessForm(forms.ModelForm):
   class Meta:
     model = Business
-    fields = ['name','description','email']
+    fields = ['name','description','image','email']
 
 class UpdatePostForm(forms.ModelForm):
   class Meta:
     model = Post
-    fields = ['title','post']
+    fields = ['title','post','image']
 
 class UpdateProfile(forms.ModelForm):
   class Meta:
