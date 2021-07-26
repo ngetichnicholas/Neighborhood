@@ -254,9 +254,9 @@ def update_profile(request):
 
 @login_required
 def update_neighborhood(request, neighborhood_id):
-  neighborhood = Post.objects.get(pk=neighborhood_id)
+  neighborhood = NeighborHood.objects.get(pk=neighborhood_id)
   if request.method == 'POST':
-    update_neighborhood_form = UpdatePostForm(request.POST, instance=neighborhood)
+    update_neighborhood_form = UpdateNeighborhoodForm(request.POST, instance=neighborhood)
     if update_neighborhood_form.is_valid():
       update_neighborhood_form.save()
       messages.success(request, f'Post updated!')
