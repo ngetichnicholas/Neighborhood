@@ -17,8 +17,9 @@ import cloudinary.api
 
 cloudinary.config(
     cloud_name ='dbos9xidr',
-    api_key=config('api_key'), 
-    api_secret=config('api_secret'),
+    api_key ="928959943118794",
+    api_secret ="6_BMOJktqtDlv05ntKqjkRRnodY",
+    secure = True
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -95,11 +96,11 @@ DATABASES = {
 }
 
 # Email configurations remember to install python-decouple
-EMAIL_USE_TLS = config('EMAIL_USE_TLS')
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT')
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_USE_TLS=True
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER='ngetij.nick@gmail.com'
+EMAIL_HOST_PASSWORD='Nick101010'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

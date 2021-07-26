@@ -4,6 +4,11 @@
   background-color: rgb(14, 58, 52);
   color:white;
 }
+nav {
+  width: 100% !important;
+  background-color: rgb(14, 58, 52) !important;
+
+}
 body {
   background-color: #bae6b9;
 }
@@ -59,9 +64,12 @@ h1,h2 {
   padding: 20px;
 }
 
-@media screen and (max-width:766px) {
+@media screen and (max-width:1084px) {
   .form-inline>.form-control,.btn {
     margin-bottom: 1rem !important;
+  }
+  .my-neighborhood {
+    display: none;
   }
   
 }

@@ -8,10 +8,8 @@
     {% endif %}
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
-        <a class="nav-item nav-link" href="{% url 'create_business' neighborhood.id %}"><button
-            class="btn btn-success">Create Business</button></a>
-            <a class="nav-item nav-link" href="{% url 'create_post' neighborhood.id %}"><button
-                class="btn btn-success">Create Post</button></a>
+        <a class="nav-item nav-link" href="{% url 'create_business' neighborhood.id %}">Create Business</a>
+            <a class="nav-item nav-link" href="{% url 'create_post' neighborhood.id %}">Create Post</a>
         <form class="form-inline ml-auto" role="search" action="{% url 'search' %}">
             <input type="text" class="form-control mr-sm-2" placeholder="Search business" name="name">
             <button type="submit" class="btn btn-outline-success">Submit</button>
@@ -24,7 +22,6 @@
               <a  href="{% url 'profile'%}"><img class="profile_picture"
                 src="https://res.cloudinary.com/dbos9xidr/image/upload/v1626854682/zvtfufhexa8lqqqgcdt3.png" alt=""></a>
                 {% endif %}
-                <a class="my-neighborhood" href="{% url 'profile'%}">{{current_user.username}}</a>
         <a class="nav-item nav-link" href="/logout">Logout</a>
 
         {% else %}
