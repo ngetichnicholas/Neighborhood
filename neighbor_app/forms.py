@@ -48,3 +48,9 @@ class UpdateUser(forms.ModelForm):
   class Meta:
     model = User
     fields = ['username','email']
+
+class UpdateNeighborhoodForm(forms.ModelForm):
+  email = forms.EmailField()
+  class Meta:
+    model = NeighborHood
+    fields = ['name','location','description','population','police_contact','hospital_contact','image']

@@ -262,6 +262,6 @@ def update_neighborhood(request, neighborhood_id):
       messages.success(request, f'Post updated!')
       return redirect('home')
   else:
-    update_neighborhood_form = UpdateNeihgborhoodForm(instance=neighborhood)
+    update_neighborhood_form = UpdateNeighborhoodForm(instance=neighborhood)
 
   return render(request, 'update_neighborhood.html', {"update_neighborhood_form":update_neighborhood_form})
