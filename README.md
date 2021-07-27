@@ -8,7 +8,7 @@ This is a Django web application where users can set profile about them and a ge
 ### Home page
 A user is required to register and login to the application. Upon successful authentication the user is redirected to home page where a user can see available neighborhoods. The user can then choose a neighborhood to move in or create a new neighbor by clicking Create Neighborhood button in the navbar
 *****
-![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1627376287/screencapture-nick-neighbor-app-herokuapp-2021-07-27-11_42_31_rpwg0b.png)
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1627377247/screencapture-nick-neighbor-app-herokuapp-2021-07-27-11_42_31_x0wnuw.png)
 *****
 ### User Profile
 Every user registered in the application has profile associated with their account. Profile contains personal details of individual user. When a user click on name of other users in their neighborhood(People column), the profile of that particular user is displayed.
