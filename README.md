@@ -15,10 +15,18 @@ Every user registered in the application has profile associated with their accou
 *****
 ![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1627376253/screencapture-nick-neighbor-app-herokuapp-accounts-profile-2021-07-27-11_54_51_zx6jir.png)
 *****
+### Neighborhood
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1627376291/screencapture-nick-neighbor-app-herokuapp-neighborhood-10-2021-07-27-11_52_44_eridsu.png)
+*****
 ### Search Function
 A user can search businesses in their neighborhhod and it will return the businesses matching the search term or display "Found 0 results if no match found by the search function.
 *****
 ![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1627376603/screencapture-nick-neighbor-app-herokuapp-search-2021-07-27-12_02_21_kgycqc.png)
+*****
+### Update and Delete Functions
+A user can update and delete neighborhood, posts and businesses only if they created the same. In this case update and delete buttons is only visible to user who created that particular neighborhood, post or business
+*****
+![alt text](https://res.cloudinary.com/dbos9xidr/image/upload/v1627376253/screencapture-nick-neighbor-app-herokuapp-update-post-9-2021-07-27-11_56_15_ostw5i.png)
 *****
 ### Prerequisites
 * Text editor eg Visual Studio Code
