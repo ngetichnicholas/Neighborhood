@@ -8,8 +8,8 @@
     {% endif %}
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
-        <a class="nav-item nav-link" href="{% url 'create_business' neighborhood.id %}">Create Business</a>
-            <a class="nav-item nav-link" href="{% url 'create_post' neighborhood.id %}">Create Post</a>
+        <a class="nav-item nav-link" style="border: 2px solid green; margin-left: 2px;" href="{% url 'create_business' neighborhood.id %}">Create Business</a>
+            <a class="nav-item nav-link" style="border: 2px solid green; margin-left: 2px;" href="{% url 'create_post' neighborhood.id %}">Create Post</a>
         <form class="form-inline ml-auto" role="search" action="{% url 'search' %}">
             <input type="text" class="form-control mr-sm-2" placeholder="Search business" name="name">
             <button type="submit" class="btn btn-outline-success">Submit</button>

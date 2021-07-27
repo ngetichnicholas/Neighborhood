@@ -277,6 +277,7 @@ def delete_neighborhood(request,neighborhood_id):
 @login_required
 def users_profile(request,pk):
   user = User.objects.get(pk = pk)
+  user_posts = Post.objects.filter(user_id = user.id).all()
   current_user = request.user
   
-  return render(request,'profile/users_profile.html',{"user":user,"current_user":current_user})
+  return render(request,'profile/users_profile.html',{'user_posts':user_posts,"user":user,"current_user":current_user})
