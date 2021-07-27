@@ -69,8 +69,8 @@ class NeighborhoodTest(TestCase):
     self.neighborhood = NeighborHood.objects.create(id=1, name='Moringa business', description='Moringa business description',image='https://cloudinary url',created_at='2021,6,26',updated_at='2021,6,26', neighborhood=self.neighborhood,user=self.user,email='nick@gmail.com')
 
   def test_create_neighborhood(self):
-    self.busines.create_neighborhood()
-    neighborhood = Business.objects.all()
+    self.neighborhood.create_neighborhood()
+    neighborhood = NeighborHood.objects.all()
     self.assertTrue(len(neighborhood) > 0)
 
   def test_get_neighborhood(self, id):
