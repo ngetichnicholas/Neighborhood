@@ -16,9 +16,10 @@ import cloudinary.uploader
 import cloudinary.api
 
 cloudinary.config(
-    cloud_name ='dbos9xidr',
-    api_key=config('api_key'), 
-    api_secret=config('api_secret'),
+    cloud_name =config('CLOUD_NAME'),
+    api_key=config('CLOUD_API_KEY'), 
+    api_secret=config('API_SECRET'),
+    secure = config('SECURE'),
 )
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -95,9 +96,9 @@ DATABASES = {
 }
 
 # Email configurations remember to install python-decouple
-EMAIL_USE_TLS = config('EMAIL_USE_TLS')
-EMAIL_HOST = config('EMAIL_HOST')
-EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_USE_TLS=True
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
